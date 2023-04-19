@@ -82,7 +82,7 @@ const Comments = ({ postId, setNowPostId }) => {
           {comments.map((x, i) => (
             <div key={i} className="flex flex-col pb-3 p-2">
               <dt className="mb-1 p-2 text-gray-500 md:text-sm">
-                {x.number} {x.name} {x.timestamp.toDate().toLocaleString('en-US', { hour12: false })}
+                {x.number} {x.name} {x.timestamp?.toDate().toLocaleString('en-US', { hour12: false })}
               </dt>
               <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
                 {x.text}
