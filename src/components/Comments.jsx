@@ -69,7 +69,7 @@ const Comments = ({ postId, setNowPostId }) => {
         <dl className="text-gray-900 divide-y divide-gray-200 overflow-auto">
           <div className="flex flex-col pb-3 p-2">
             <dt className="mb-1 text-gray-500 md:text-sm">
-              {post.number} {post.name} {post.timestamp.toDate().toLocaleString('en-US', { hour12: false })}
+              {post.number} {post.name} {post.timestamp?.toDate().toLocaleString('en-US', { hour12: false })}
             </dt>
             <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
               {post.text}
