@@ -14,6 +14,8 @@ const PostForm = () => {
       ...data,
       timestamp: serverTimestamp(),
     });
+    setValue("text", '');
+    setValue("code", '');
   };
 
   useEffect(() => {
