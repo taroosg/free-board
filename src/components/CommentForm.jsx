@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const CommentForm = ({ postId }) => {
 
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit, setValue, getValues } = useForm({
     shouldUnregister: false,
   });
 
@@ -14,6 +14,8 @@ const CommentForm = ({ postId }) => {
       ...data,
       timestamp: serverTimestamp(),
     });
+    setValue("text", '');
+    setValue("code", '');
   };
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const CommentForm = ({ postId }) => {
               {...register("text", { required: true })}
               id="text"
               name="text"
-              rows="1"
+              rows="2"
               placeholder="本文"
               className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             >

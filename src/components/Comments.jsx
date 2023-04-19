@@ -74,9 +74,13 @@ const Comments = ({ postId, setNowPostId }) => {
             <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
               {post.text}
             </dd>
-            <dd className="ml-2 mb-1 p-2 text-sm bg-gray-100">
-              <pre>{post.code ?? ''}</pre>
-            </dd>
+            {
+              post.code
+                ? <dd className="ml-2 mb-1 p-2 text-sm bg-gray-100">
+                  <pre>{post.code ?? ''}</pre>
+                </dd>
+                : ''
+            }
           </div>
 
           {comments.map((x, i) => (
