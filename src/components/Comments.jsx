@@ -36,7 +36,7 @@ const Comments = ({ postId, setNowPostId }) => {
 
   return (
     <div className="border-b border-gray-900/10 p-4 md:w-1/2 min-h-screen max-h-screen flex flex-col">
-      <div>
+      <div className="mb-2">
         <div
           className="flex justify-between"
         >
@@ -62,7 +62,7 @@ const Comments = ({ postId, setNowPostId }) => {
       </div>
 
       <div className="flex-1 overflow-auto">
-        <h2 className="mt-4 text-base font-semibold leading-7 text-gray-900">
+        <h2 className="mt-2 text-base font-semibold leading-7 text-gray-900">
           コメント一覧
         </h2>
 
@@ -76,7 +76,7 @@ const Comments = ({ postId, setNowPostId }) => {
             </dd>
             {
               post.code
-                ? <dd className="ml-2 mb-1 p-2 text-sm bg-gray-100">
+                ? <dd className="ml-4 mb-1 p-2 text-sm bg-gray-100">
                   <pre>{post.code ?? ''}</pre>
                 </dd>
                 : ''
@@ -93,7 +93,7 @@ const Comments = ({ postId, setNowPostId }) => {
               </dd>
               {
                 x.code
-                  ? <dd className="ml-2 mb-1 p-2 text-sm bg-gray-100">
+                  ? <dd className="ml-4 mb-1 p-2 text-sm bg-gray-100">
                     <pre>{x.code ?? ''}</pre>
                   </dd>
                   : ''
