@@ -12,7 +12,7 @@ const Posts = ({ posts, setPosts, setNowPostId }) => {
     setLoading(true);
     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
     const unsub = onSnapshot(q, async (documentSnapshot) => {
-      const data = await Promise.all(documentSnapshot.docs.map(async (x) => ({ ...x.data(), id: x.id, commentsCount: (await getCountFromServer(collection(db, "posts", x.id, "comments"))).data().count ?? 'hoge' })));
+      const data = await Promise.all(documentSnapshot.docs.map(async (x) => ({ ...x.data(), id: x.id, commentsCount: (await getCountFromServer(collection(db, "posts", x.id, "comments"))).data().count ?? 0 })));
       setPosts(data);
       setLoading(false);
     });
