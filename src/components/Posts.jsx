@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase.js";
-import { collection, query, orderBy, onSnapshot, getCountFromServer } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, getDocs } from "firebase/firestore";
 import PostForm from "./PostForm.jsx";
 
 const Posts = ({ posts, setPosts, setNowPostId }) => {
@@ -12,7 +12,7 @@ const Posts = ({ posts, setPosts, setNowPostId }) => {
     setLoading(true);
     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
     const unsub = onSnapshot(q, async (documentSnapshot) => {
-      const data = await Promise.all(documentSnapshot.docs.map(async (x) => ({ ...x.data(), id: x.id, commentsCount: (await getCountFromServer(collection(db, "posts", x.id, "comments"))).data().count ?? 0 })));
+      const data = await Promise.all(documentSnapshot.docs.map(async (x) => ({ ...x.data(), id: x.id, commentsCount: (await getDocs(collection(x.ref, "comments"))).docs.length ?? 0 })));
       setPosts(data);
       setLoading(false);
     });
@@ -56,7 +56,7 @@ const Posts = ({ posts, setPosts, setNowPostId }) => {
                 {x.number} {x.name} {x.timestamp?.toDate().toLocaleString('en-US', { hour12: false })}
               </dt>
               <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
-                {x.text}
+                {x.text.split('\n').map((x, i) => <p key={i}>{x}</p>)}
               </dd>
               {
                 x.code

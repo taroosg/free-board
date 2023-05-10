@@ -72,7 +72,7 @@ const Comments = ({ postId, setNowPostId }) => {
               {post.number} {post.name} {post.timestamp?.toDate().toLocaleString('en-US', { hour12: false })}
             </dt>
             <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
-              {post.text}
+              {post.text.split('\n').map((x, i) => <p key={i}>{x}</p>)}
             </dd>
             {
               post.code
@@ -89,7 +89,7 @@ const Comments = ({ postId, setNowPostId }) => {
                 {x.number} {x.name} {x.timestamp?.toDate().toLocaleString('en-US', { hour12: false })}
               </dt>
               <dd className="ml-2 mb-1 p-2 text-sm font-semibold">
-                {x.text}
+                {x.text.split('\n').map((x, i) => <p key={i}>{x}</p>)}
               </dd>
               {
                 x.code
